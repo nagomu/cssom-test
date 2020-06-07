@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Simple test of CSSOM</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/lazy-load.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+  </head>
+  <body>
+    <h1>Simple test of CSSOM</h1>
+    <div class="foo">
+      <p>Foo</p>
+      <div class="bar">
+        <p>Bar</p>
+      </div>
+    </div>
+    <h2>メモ</h2>
+    <ul>
+      <li>
+        <code>lazy-load.css</code> → <code>app.css</code> の順で
+        <code>link</code> 要素を定義している
+      </li>
+      <li>
+        <code>lazy-load.css</code> は Express が5秒後に返すため、常に
+        <code>app.css</code> よりあとで読み込みが完了する
+      </li>
+      <li>
+        <code>.foo</code> は、先に記述されている <code>lazy-load.css</code> では
+        <code>color: indigo</code>、後に記述されている <code>app.css</code> では
+        <code>color: tomato</code> を定義しているので、
+        <code>tomato</code> で表示されることが期待される
+      </li>
+      <li>
+        <code>.foo</code> は、先に記述されている <code>lazy-load.css</code> では
+        <code>color: lime</code>、後に記述されている <code>app.css</code> では
+        <code>.foo .bar</code> のように Specificity を高めたセレクタで、
+        <code>color: olivedrab</code> を定義しているので、
+        <code>olivedrab</code> で表示されることが期待される
+      </li>
+    </ul>
+  </body>
+</html>
