@@ -1,4 +1,5 @@
 *.log
 .DS_Store
+.certificate
 .node-version
 node_modules
