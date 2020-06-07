@@ -27,7 +27,10 @@ app.get("/css/lazy-load.css", (_req, res, _next) => {
   }, 5000);
 });
 
-http.createServer(app).listen(80);
-https.createServer(sslOptions, app).listen(443);
-
-console.log("🌍 https://localhost/");
+if (process.env === "production") {
+  https.createServer(sslOptions, app).listen(443);
+  console.log("🌍 https://localhost/");
+} else {
+  http.createServer(app).listen(8080);
+  console.log("🌍 http://localhost:8080/");
+}
